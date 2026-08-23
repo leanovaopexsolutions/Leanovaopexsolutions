@@ -33,6 +33,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---------- masthead ---------- */
+.pswitch{border-bottom:1px solid var(--stroke);background:rgba(3,7,18,.75);backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:50}
+.psi{display:flex;align-items:center;gap:22px;padding:11px 0;flex-wrap:wrap}
+.pl{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--faint)}
+.ptabs{display:flex;gap:8px}
+.ptab{display:flex;align-items:center;gap:9px;font-family:var(--disp);font-size:13.5px;font-weight:600;
+  color:var(--faint);border:1px solid var(--stroke);border-radius:999px;padding:9px 18px;transition:.18s}
+.ptab svg{width:16px;height:16px}
+.ptab:hover{color:var(--ink);border-color:rgba(0,240,255,.3)}
+.ptab.on{color:var(--cyan);border-color:rgba(0,240,255,.5);background:rgba(0,240,255,.08)}
 .top{border-bottom:1px solid var(--stroke);padding:26px 0}
 .topgrid{display:grid;grid-template-columns:400px 1fr;gap:26px;align-items:start}
 .brand{display:flex;align-items:center;gap:13px;margin-bottom:22px}
@@ -258,6 +268,19 @@ td.chg{color:var(--rose);font-weight:600;font-family:var(--mono);font-size:11px;
   </div>
 </div></div>
 
+<div class="pswitch"><div class="wrap psi">
+  <span class="pl">LEANOVA OPEX &mdash; AI PRODUCTS</span>
+  <div class="ptabs">
+    <button class="ptab on" id="tab-doc" onclick="show('doc')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>
+      Document Intelligence</button>
+    <button class="ptab" id="tab-voice" onclick="show('voice')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      Voice Agents</button>
+  </div>
+</div></div>
+
+<div id="view-doc">
 <div class="wrap main">
   <div class="glass repo">
     <div class="rh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><b>DOCUMENT REPOSITORY</b></div>
@@ -390,6 +413,145 @@ td.chg{color:var(--rose);font-weight:600;font-family:var(--mono);font-size:11px;
   </div>
 </div>
 
+</div><!-- /view-doc -->
+
+<div id="view-voice" style="display:none">
+<div class="wrap main">
+
+  <div class="glass repo">
+    <div class="rh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg><b>ACTIVE CAMPAIGNS</b></div>
+    <div class="rb">
+      <button class="upbtn" onclick="alert('Demonstration build — campaign creation is disabled.')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>New Campaign</button>
+      <div class="tot">3 RUNNING &middot; 1 SCHEDULED</div>
+      <div id="camplist"></div>
+      <button class="viewall" onclick="alert('Demonstration build — full campaign list not included.')">VIEW ALL CAMPAIGNS &rarr;</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <div class="ab">
+      <div class="l"><div class="burger"><i></i><i></i><i></i></div><b>LEANOVA OPEX &mdash; VOICE AGENT CONSOLE</b></div>
+      <div class="usr"><div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div>Operations</div>
+    </div>
+    <div class="apad">
+      <div class="kpis">
+        <div class="kpi"><div class="kic" style="background:rgba(0,240,255,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="1.9"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+          <div class="kb"><div class="l">Calls Placed</div><div class="v">1,284</div><div class="d">+212 THIS WEEK</div></div></div>
+        <div class="kpi"><div class="kic" style="background:rgba(16,185,129,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="kb"><div class="l">Connected</div><div class="v">71%</div><div class="d">+4% THIS WEEK</div></div></div>
+        <div class="kpi"><div class="kic" style="background:rgba(37,99,235,.14)"><svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="kb"><div class="l">Avg Call Time</div><div class="v">1:47</div><div class="d">WITHIN TARGET</div></div></div>
+        <div class="kpi"><div class="kic" style="background:rgba(245,169,59,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#F5A93B" stroke-width="1.9"><path d="M12 3a4 4 0 0 1 4 4v4a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M6 11a6 6 0 0 0 12 0"/></svg></div>
+          <div class="kb"><div class="l">Handed to Human</div><div class="v">9%</div><div class="d">BY DESIGN</div></div></div>
+      </div>
+
+      <div class="ask">
+        <div class="lbl">Select a live call to inspect...</div>
+        <div class="chips" id="callchips" style="margin-top:0"></div>
+      </div>
+
+      <div class="finding">
+        <div class="fh"><b>CALL OUTCOME</b><span class="badge ok" id="vverdict">CONFIRMED</span></div>
+        <div class="fb">
+          <div class="ans" id="vanswer"></div>
+          <div class="meta">
+            <div class="mc"><div class="k">CAMPAIGN</div><div class="v blue" id="v1"></div></div>
+            <div class="mc"><div class="k">DURATION</div><div class="v" id="v2"></div></div>
+            <div class="mc"><div class="k">OUTCOME</div><div class="v" id="v3"></div></div>
+            <div class="mc"><div class="k">CONSENT</div><div class="v green" id="v4"></div></div>
+            <div class="mc"><div class="k">ESCALATED</div><div class="v amber" id="v5"></div></div>
+          </div>
+          <div class="ev">
+            <div class="evh">CALL RECORD &mdash; MINIMISED TELEMETRY ONLY</div>
+            <div class="evb">
+              <div class="page" style="display:flex;align-items:center;justify-content:center">
+                <svg viewBox="0 0 120 40" style="width:100%;height:56px">
+                  <g fill="#00F0FF" opacity=".8">
+                    <rect x="2" y="16" width="3" height="8" rx="1.5"/><rect x="9" y="11" width="3" height="18" rx="1.5"/>
+                    <rect x="16" y="6" width="3" height="28" rx="1.5"/><rect x="23" y="13" width="3" height="14" rx="1.5"/>
+                    <rect x="30" y="9" width="3" height="22" rx="1.5"/><rect x="37" y="17" width="3" height="6" rx="1.5"/>
+                    <rect x="44" y="4" width="3" height="32" rx="1.5"/><rect x="51" y="12" width="3" height="16" rx="1.5"/>
+                    <rect x="58" y="15" width="3" height="10" rx="1.5"/><rect x="65" y="8" width="3" height="24" rx="1.5"/>
+                    <rect x="72" y="14" width="3" height="12" rx="1.5"/><rect x="79" y="10" width="3" height="20" rx="1.5"/>
+                    <rect x="86" y="16" width="3" height="8" rx="1.5"/><rect x="93" y="7" width="3" height="26" rx="1.5"/>
+                    <rect x="100" y="13" width="3" height="14" rx="1.5"/><rect x="107" y="17" width="3" height="6" rx="1.5"/>
+                  </g>
+                </svg>
+                <div class="pg" id="vdur">1:47</div>
+              </div>
+              <div class="evt"><h4 id="vevh"></h4><p id="vevp"></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rcol">
+    <div class="pnl">
+      <div class="ph"><b>COMPLIANCE GATES</b><span>checked before every dial</span></div>
+      <div class="gap"><div class="gic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><div class="gt">DND Registry</div><div class="gd">Number scrubbed against the national do-not-disturb list</div></div><div class="gs ok">PASS</div></div>
+      <div class="gap"><div class="gic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><div class="gt">Consent on File</div><div class="gd">Lawful basis recorded by the client, not assumed</div></div><div class="gs ok">PASS</div></div>
+      <div class="gap"><div class="gic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><div class="gt">Calling Window</div><div class="gd">Within permitted hours for the contact's timezone</div></div><div class="gs ok">PASS</div></div>
+      <div class="gap"><div class="gic part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M6 12h12"/></svg></div>
+        <div><div class="gt">Recording Announcement</div><div class="gd">Played at call start where recording is enabled</div></div><div class="gs part">PER TENANT</div></div>
+      <div class="gap" style="border-bottom:none"><div class="gic miss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+        <div><div class="gt">Any Gate Fails</div><div class="gd">The call is not placed. No override exists.</div></div><div class="gs miss">NO DIAL</div></div>
+    </div>
+
+    <div class="pnl">
+      <div class="ph"><b>WHERE IT APPLIES</b></div>
+      <div class="uc" style="grid-template-columns:1fr">
+        <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v4M16 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>
+          <b>Clinics</b><p>Appointment reminders and confirmations, rescheduling, no-show reduction</p></div>
+        <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>
+          <b>Sales Teams</b><p>Inbound lead qualification, follow-up, routing to the right rep</p></div>
+        <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+          <b>Recruiters</b><p>Candidate screening at volume, structured outcomes, human handoff</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap bot">
+  <div class="pnl">
+    <div class="ph"><b>HOW A CALL RUNS</b></div>
+    <div class="uc">
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h13"/></svg><b>1. Queue</b><p>Contact list loaded, schedule and retry policy applied</p></div>
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg><b>2. Gate</b><p>DND, consent and calling-window checks. Any failure stops the dial</p></div>
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><b>3. Dial</b><p>Outbound call placed through the telephony provider</p></div>
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><b>4. Converse</b><p>Agent follows the configured script, adapts to the reply</p></div>
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg><b>5. Escalate</b><p>Uncertain or sensitive turns hand off to a person</p></div>
+      <div class="ucc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg><b>6. Record</b><p>Typed outcome written back. Transcript retention is opt-in</p></div>
+    </div>
+  </div>
+
+  <div class="pnl">
+    <div class="ph"><b>BUILT IN</b></div>
+    <ul class="vd">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Multi-tenant &mdash; each client isolated end to end</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Per-client kill switch, reachable in one click</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Spend cap per campaign, checked before each call</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>No transcript stored unless the client opts in</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Every call billed once &mdash; retries never double-charge</li>
+    </ul>
+  </div>
+
+  <div class="pnl">
+    <div class="ph"><b>POC SCOPE (MVP)</b></div>
+    <ul class="sc">
+      <li>1 tenant, 1 campaign type</li><li>Outbound dialling with retry policy</li>
+      <li>DND, consent and calling-window gates</li><li>Typed call outcomes</li>
+      <li>Live queue and spend dashboard</li><li>Human handoff path</li>
+    </ul>
+  </div>
+</div>
+</div><!-- /view-voice -->
+
 <div class="foot">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 4v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V7z"/></svg>
   This POC is for demonstration purposes only. Final decisions and regulatory compliance must be validated by qualified professionals.
@@ -440,6 +602,53 @@ function run(){const x=Q[cur],v=document.getElementById('verdict');
  document.getElementById('evh').textContent=x.evh;
  document.getElementById('evp').innerHTML=x.evp;}
 run();
+
+const CAMPS=[
+ ["Appointment Reminders","Clinic &middot; 412 contacts","Running","ok"],
+ ["Lead Qualification","Sales &middot; 260 contacts","Running","ok"],
+ ["Candidate Screening","Recruiting &middot; 88 contacts","Running","ok"],
+ ["Renewal Follow-up","Clinic &middot; 190 contacts","Scheduled","part"]
+];
+document.getElementById('camplist').innerHTML=CAMPS.map(c=>
+ `<div class="doc"><div class="dic ${c[3]==='ok'?'xls':'doc'}">${c[3]==='ok'?'RUN':'SCH'}</div>
+  <div><div class="dn">${c[0]}</div><div class="dm">${c[1]}<br>${c[2].toUpperCase()}</div></div></div>`).join('');
+
+const CALLS=[
+ {t:"Appointment confirmed",v:["CONFIRMED","ok"],
+  a:'Patient confirmed the appointment for Thursday 10:40. The agent read back the date, time and location, and the confirmation was written to the clinic system as a typed outcome.<br><br>No transcript was retained &mdash; this tenant has transcript storage switched off.',
+  m:["Appointment Reminders","1:47","Confirmed","On file","No"],
+  evh:"What was stored",evp:'Call duration, connection status, outcome code <mark>CONFIRMED</mark>, and the agent version used. No audio, no transcript, no free text. The outcome is a typed value the clinic system can act on directly.'},
+ {t:"Reschedule requested",v:["RESCHEDULE","part"],
+  a:'Patient asked to move the appointment. The agent captured the preferred window and wrote a reschedule request rather than booking directly &mdash; slot allocation stays with the clinic.<br><br>Outcome routed to the front desk queue.',
+  m:["Appointment Reminders","2:12","Reschedule","On file","No"],
+  evh:"Why it did not book",evp:'The agent is scoped to confirm or capture intent. Booking a slot requires availability the clinic controls, so the agent <mark>records the request and hands off</mark> rather than guessing at a time.'},
+ {t:"Escalated to a person",v:["ESCALATED","miss"],
+  a:'The caller raised a clinical question the agent is not scoped to answer. It stopped, said so plainly, and transferred to a staff member.<br><br>No advice was given. The escalation is logged with the reason.',
+  m:["Appointment Reminders","0:38","Escalated","On file","Yes"],
+  evh:"The handoff rule",evp:'Anything outside the configured scope &mdash; clinical advice, complaints, payment disputes &mdash; triggers an immediate handoff. The agent <mark>does not attempt an answer</mark> and does not improvise.'}
+];
+document.getElementById('callchips').innerHTML=CALLS.map((c,i)=>
+ `<button class="chip${i===0?' on':''}" onclick="pickCall(${i})">${c.t}</button>`).join('');
+let vcur=0;
+function pickCall(i){vcur=i;
+ document.querySelectorAll('#callchips .chip').forEach((c,j)=>c.classList.toggle('on',j===i));vrun();}
+function vrun(){const x=CALLS[vcur],v=document.getElementById('vverdict');
+ v.textContent=x.v[0];v.className='badge '+x.v[1];
+ document.getElementById('vanswer').innerHTML=x.a;
+ for(let i=0;i<5;i++)document.getElementById('v'+(i+1)).innerHTML=x.m[i];
+ document.getElementById('vdur').textContent=x.m[1];
+ document.getElementById('vevh').textContent=x.evh;
+ document.getElementById('vevp').innerHTML=x.evp;}
+vrun();
+
+function show(w){
+ document.getElementById('view-doc').style.display   = w==='doc'   ? '' : 'none';
+ document.getElementById('view-voice').style.display = w==='voice' ? '' : 'none';
+ document.getElementById('tab-doc').classList.toggle('on',w==='doc');
+ document.getElementById('tab-voice').classList.toggle('on',w==='voice');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
 </script>
 </body>
 </html>
