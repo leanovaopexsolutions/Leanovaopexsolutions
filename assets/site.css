@@ -1,0 +1,283 @@
+:root{
+  /* ground — the logo's black, warmed very slightly */
+  --ground:#08080B;
+  --card:#101015;
+  --card-soft:#15151B;
+
+  /* light on black */
+  --ink:#F4F3F0;
+  --dim:#A9ADB4;
+  --faint:#6C7078;
+
+  /* the two metals */
+  --gold:#D8B45C;
+  --gold-lit:#F2E0AA;
+  --gold-deep:#9C7723;
+  --gold-wash:rgba(216,180,92,.10);
+  --steel:#D2D9DF;
+  --steel-dim:#8E979F;
+  --stop:#C9705A;
+
+  /* legacy aliases kept so every existing rule resolves */
+  --teal:var(--gold);
+  --teal-deep:var(--gold-lit);
+  --teal-wash:var(--gold-wash);
+
+  --hair:rgba(255,255,255,.09);
+  --hair-soft:rgba(255,255,255,.055);
+  --hair-gold:rgba(216,180,92,.30);
+
+  --display:Jost,"Futura",system-ui,sans-serif;
+  --body:Inter,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --measure:66ch;
+  --gutter:clamp(1.25rem,4vw,3rem);
+  --stack:clamp(3.25rem,6.5vw,5.5rem);
+  --r:4px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:var(--body);font-weight:300;
+  font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;
+  background:var(--ground);
+  background-image:
+    radial-gradient(38rem 22rem at 50% -6%, rgba(242,224,170,.10), transparent 66%),
+    radial-gradient(44rem 30rem at 4% 14%, rgba(216,180,92,.075), transparent 62%),
+    radial-gradient(44rem 30rem at 98% 42%, rgba(210,217,223,.06), transparent 62%);
+  background-attachment:fixed;
+}
+
+/* ------------------------------------------------------------- type */
+h1,h2,h3,h4{font-family:var(--display);font-weight:300;letter-spacing:.012em;line-height:1.14;margin:0;color:var(--ink);text-wrap:balance}
+h1{font-size:clamp(2.1rem,4.6vw,3.35rem);font-weight:200;letter-spacing:.03em}
+h2{font-size:clamp(1.45rem,2.8vw,2.05rem);line-height:1.2;letter-spacing:.022em}
+h3{font-size:1.115rem;font-weight:400;letter-spacing:.014em}
+h4{font-size:.9375rem;font-weight:400;letter-spacing:.02em}
+p{margin:0 0 1em;max-width:var(--measure);color:var(--dim)}
+p:last-child{margin-bottom:0}
+strong{color:var(--ink);font-weight:500}
+a{color:var(--gold);text-underline-offset:.18em}
+a:hover{color:var(--gold-lit)}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+.lede{font-size:1.1875rem;line-height:1.6;color:var(--dim);font-weight:300}
+.small{font-size:.9125rem}
+.muted{color:var(--faint)}
+.kick{font-family:var(--mono);font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:400}
+
+/* ----------------------------------------------------------- layout */
+.wrap{max-width:76rem;margin-inline:auto;padding-inline:var(--gutter)}
+.band{padding-block:var(--stack)}
+.narrow{max-width:48rem}
+
+.cols{display:grid;gap:clamp(1rem,2vw,1.5rem)}
+.cols--2{grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
+.cols--3{grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.cols--split{grid-template-columns:minmax(0,19rem) minmax(0,1fr);gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
+.cols--media{grid-template-columns:minmax(0,1fr) minmax(0,25rem);gap:clamp(2rem,4vw,3.5rem);align-items:center}
+@media(max-width:58rem){.cols--split,.cols--media{grid-template-columns:1fr}}
+
+.skip{position:absolute;left:-9999px;background:var(--gold);color:#0A0A0C;padding:.6rem 1rem;z-index:100;border-radius:2px;font-weight:500}
+.skip:focus{left:var(--gutter);top:.6rem}
+
+/* ----------------------------------------------------------- header */
+.top{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,8,11,.82);
+  backdrop-filter:blur(16px) saturate(120%);
+  -webkit-backdrop-filter:blur(16px) saturate(120%);
+  border-bottom:1px solid var(--hair);
+}
+/* the logo's signature: gold left, flare, silver right */
+.top::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-deep) 12%,var(--gold) 34%,#FFF8E4 50%,var(--steel) 66%,#5C646B 88%,transparent);
+  opacity:.85;
+}
+.top .wrap{display:flex;align-items:center;gap:2rem;min-height:5.1rem}
+.brand{display:flex;align-items:center;gap:.95rem;text-decoration:none;color:var(--ink)}
+/* boxed emblem: infinity mark over the LOS monogram */
+/* The logo file exactly as supplied — full mark, wordmark and strapline.
+   Not cropped, not recoloured. mix-blend-mode: screen drops its black field
+   into the header so no rectangle shows; needs a dark background to sit on. */
+.brand__logo{
+  flex:none;display:block;height:3.6rem;width:auto;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 0 10px rgba(255,244,214,.16));
+}
+.brand__rule{width:1px;align-self:stretch;flex:none;margin-block:.35rem;
+  background:linear-gradient(180deg,transparent,var(--hair-gold),transparent)}
+.brand__text{display:flex;flex-direction:column;gap:.18rem;min-width:0}
+.brand__name{
+  font-family:var(--display);font-weight:300;font-size:1.06rem;letter-spacing:.2em;
+  text-transform:uppercase;white-space:nowrap;line-height:1.1;color:var(--ink);
+}
+.brand__name span{color:var(--gold);font-weight:400}
+.brand__tag{
+  font-family:var(--mono);font-size:.6125rem;font-weight:400;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--steel-dim);white-space:nowrap;line-height:1.5;
+}
+@media(max-width:34rem){
+  .brand__logo{height:2.7rem}
+  .brand__name{font-size:.85rem;letter-spacing:.15em}
+  .brand__tag{font-size:.55rem;letter-spacing:.1em;white-space:normal}
+}
+nav.main{margin-left:auto;display:flex;gap:1.65rem;align-items:center}
+nav.main a:not(.btn){font-family:var(--body);font-size:.9125rem;font-weight:400;color:var(--dim);text-decoration:none;padding:.4rem 0;border-bottom:1px solid transparent;letter-spacing:.012em}
+nav.main a:not(.btn):hover{color:var(--ink);border-bottom-color:var(--hair-gold)}
+nav.main a:not(.btn)[aria-current="page"]{color:var(--gold);border-bottom-color:var(--gold)}
+.btn{
+  display:inline-block;font-family:var(--body);font-weight:500;font-size:.9125rem;letter-spacing:.04em;
+  background:linear-gradient(120deg,#B98F2E,#E5C978 46%,#FBF0CC 56%,#D8B45C 72%,#A87E22);
+  color:#0A0A0C;padding:.62rem 1.35rem;border-radius:2px;text-decoration:none;
+  box-shadow:0 10px 26px -16px rgba(216,180,92,.85);
+  transition:filter .18s,box-shadow .18s,transform .18s;
+}
+.btn:hover{filter:brightness(1.09);color:#0A0A0C;box-shadow:0 14px 32px -14px rgba(216,180,92,.95);transform:translateY(-1px)}
+.btn--lg{font-size:.975rem;padding:.82rem 1.7rem}
+.btn--quiet{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair);}
+.btn--quiet:hover{background:rgba(255,255,255,.03);color:var(--gold-lit);box-shadow:inset 0 0 0 1px var(--hair-gold);filter:none}
+@media(max-width:62rem){
+  .top{position:static}
+  .top .wrap{flex-wrap:wrap;gap:.5rem 1.1rem;padding-block:.85rem;min-height:0}
+  nav.main{margin-left:0;width:100%;flex-wrap:wrap;gap:.3rem 1.1rem}
+}
+
+/* ------------------------------------------------------------ cards */
+.card{
+  position:relative;overflow:hidden;
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--r);
+  padding:1.55rem 1.6rem 1.7rem;
+  transition:border-color .2s,background .2s,transform .2s;
+}
+.card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,var(--gold),rgba(216,180,92,0));
+  opacity:0;transition:opacity .2s;
+}
+.card--hover:hover{background:var(--card-soft);border-color:rgba(255,255,255,.14);transform:translateY(-2px)}
+.card--hover:hover::before{opacity:1}
+.card h3{color:var(--ink);margin:.5rem 0 .5rem}
+.card p{font-size:.9375rem}
+.card .kick{color:var(--steel-dim)}
+.card__link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.9125rem;font-weight:500;text-decoration:none;color:var(--gold)}
+.card__link:hover{color:var(--gold-lit)}
+.card__link::after{content:"";width:.95rem;height:.95rem;background:currentColor;
+  -webkit-mask:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'><path d='M5 12h13M13 6l6 6-6 6'/></svg>");
+  mask:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'><path d='M5 12h13M13 6l6 6-6 6'/></svg>")}
+
+.panel{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:clamp(1.5rem,3vw,2.6rem)}
+.panel--wash{background:var(--card-soft)}
+
+/* image slot — metal sheen standing in for the photograph */
+.media{position:relative;border-radius:var(--r);overflow:hidden;min-height:16rem;display:grid;place-items:center;
+  border:1px solid var(--hair);
+  background:
+    radial-gradient(14rem 9rem at 50% 50%, rgba(255,248,228,.16), transparent 70%),
+    linear-gradient(115deg,#3A2E12 0%,#6B5420 26%,#1A1A1E 50%,#5A626A 76%,#2A2E33 100%);
+}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.media__note{font-family:var(--mono);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,243,240,.62);text-align:center;line-height:2;padding:1rem}
+.media--tall{min-height:23rem}
+
+/* ------------------------------------------------ prohibition list */
+.refusals{list-style:none;margin:0;padding:0}
+.refusals li{
+  display:grid;grid-template-columns:2.6rem 1fr 5.5rem;align-items:center;gap:1rem;
+  padding:.9rem 1.1rem;border-bottom:1px solid var(--hair-soft);
+  font-family:var(--body);font-size:1rem;font-weight:400;color:var(--ink);
+}
+.refusals li:last-child{border-bottom:none}
+.refusals li:hover{background:var(--card-soft)}
+.refusals .n{font-family:var(--mono);font-size:.6875rem;color:var(--faint)}
+.refusals .s{font-family:var(--mono);font-size:.6563rem;letter-spacing:.1em;color:var(--stop);text-align:right}
+@media(max-width:40rem){.refusals li{grid-template-columns:2.4rem 1fr}.refusals .s{grid-column:2;text-align:left;margin-top:.15rem}}
+
+/* pill row */
+.pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.pill{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;
+  background:transparent;color:var(--steel);padding:.42rem .85rem;border-radius:999px;
+  border:1px solid var(--hair)}
+.pill:nth-child(odd){color:var(--gold);border-color:var(--hair-gold)}
+
+/* stats */
+.stat{background:var(--card);border:1px solid var(--hair);border-top:1px solid var(--hair-gold);border-radius:var(--r);padding:1.5rem 1.55rem}
+.stat__n{display:block;font-family:var(--display);font-size:clamp(1.22rem,2.2vw,1.5rem);font-weight:300;letter-spacing:.02em;color:var(--ink);line-height:1.22}
+.stat__l{display:block;margin-top:.7rem;font-size:.9125rem;color:var(--dim)}
+
+.note{border-left:1px solid var(--stop);background:rgba(201,112,90,.08);padding:1.1rem 1.35rem;max-width:var(--measure);border-radius:0 var(--r) var(--r) 0}
+.note p{color:var(--ink)}
+.note--signal{border-left-color:var(--gold);background:var(--gold-wash)}
+
+/* rows */
+.rows{list-style:none;margin:0;padding:0}
+.rows li+li{margin-top:.5rem}
+.rows a{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--hair);
+  border-radius:var(--r);padding:1rem 1.25rem;font-family:var(--display);font-weight:300;font-size:1.075rem;letter-spacing:.02em;
+  color:var(--ink);text-decoration:none;transition:border-color .16s,transform .16s,background .16s}
+.rows a::after{content:"";margin-left:auto;flex:none;width:1.1rem;height:1.1rem;background:var(--gold);
+  -webkit-mask:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'><path d='M5 12h13M13 6l6 6-6 6'/></svg>");
+  mask:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'><path d='M5 12h13M13 6l6 6-6 6'/></svg>")}
+.rows a:hover{border-color:var(--hair-gold);background:var(--card-soft);transform:translateX(2px)}
+
+table{border-collapse:collapse;width:100%;font-size:.9375rem}
+th,td{text-align:left;padding:.9rem 1.1rem .9rem 0;border-bottom:1px solid var(--hair-soft);vertical-align:top;color:var(--dim)}
+th{font-family:var(--mono);font-weight:400;font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;color:var(--steel-dim);border-bottom-color:var(--hair-gold)}
+td:first-child{font-weight:400;color:var(--ink);font-family:var(--display);letter-spacing:.02em}
+tbody tr:hover td{background:rgba(255,255,255,.025)}
+
+.detail{border-top:1px solid var(--hair-soft);padding-block:1rem;display:grid;grid-template-columns:6rem 1fr;gap:1rem;align-items:baseline}
+.detail:last-of-type{border-bottom:1px solid var(--hair-soft)}
+.detail dt{font-family:var(--mono);font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;color:var(--steel-dim)}
+.detail dd{margin:0;font-weight:400;color:var(--ink)}
+.detail dd a{text-decoration:none}
+
+/* closing band — the light burst at the centre of the mark */
+.close{position:relative;overflow:hidden;border:1px solid var(--hair);border-radius:var(--r);
+  background:
+    radial-gradient(30rem 16rem at 50% 0%, rgba(255,248,228,.12), transparent 70%),
+    linear-gradient(115deg,#241C08 0%,#12120F 42%,#101216 58%,#20242A 100%);
+  padding:clamp(2.25rem,4.5vw,3.5rem);color:var(--ink)}
+.close::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold) 22%,#FFF8E4 50%,var(--steel) 78%,transparent)}
+.close h2{color:var(--ink)}
+.close p{color:var(--dim)}
+.close .btn{color:#0A0A0C}
+
+/* footer */
+.foot{border-top:1px solid var(--hair);padding-block:2.85rem 2rem;font-size:.9375rem;color:var(--dim)}
+.foot h4{font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;margin-bottom:.85rem;color:var(--steel-dim)}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{padding-block:.22rem}
+.foot a{color:var(--dim);text-decoration:none}
+.foot a:hover{color:var(--gold)}
+.foot__base{margin-top:2.25rem;padding-top:1.3rem;border-top:1px solid var(--hair-soft);display:flex;flex-wrap:wrap;gap:.5rem 2rem;font-size:.8125rem;color:var(--faint);max-width:76rem;margin-inline:auto;padding-inline:var(--gutter)}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none !important;scroll-behavior:auto !important}
+}
+
+/* --------------------------------------------------------------- map
+
+   Google Maps embed. Uses the ?output=embed form, which needs no API key.
+   The filter darkens Google's light default so it sits on the black ground
+   instead of glaring out of it — delete that one line for the normal map.
+
+   Note: the iframe sets Google cookies as soon as the page loads. If you
+   add a cookie notice later, this is the thing it has to cover. */
+
+.map{margin:0;position:relative}
+.map iframe{
+  display:block;width:100%;aspect-ratio:4/3;border:0;border-radius:var(--r);
+  filter:invert(92%) hue-rotate(180deg) saturate(.75) contrast(.92);
+}
+.map figcaption{
+  margin-top:.75rem;font-family:var(--mono);font-size:.6875rem;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.map figcaption a{color:var(--gold);text-decoration:none}
+.map figcaption a:hover{color:var(--gold-lit)}
+@media(max-width:58rem){.map iframe{aspect-ratio:16/10}}
