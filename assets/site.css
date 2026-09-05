@@ -178,7 +178,38 @@ nav.main a:not(.btn)[aria-current="page"]{color:var(--gold);border-bottom-color:
     radial-gradient(14rem 9rem at 50% 50%, rgba(255,248,228,.16), transparent 70%),
     linear-gradient(115deg,#3A2E12 0%,#6B5420 26%,#1A1A1E 50%,#5A626A 76%,#2A2E33 100%);
 }
-.media img{width:100%;height:100%;object-fit:cover;display:block}
+/* Photographs are graded towards the palette — darker, less saturated,
+   warm in the highlights — so shots taken on different days sit together.
+   Adjust this one filter rather than editing each image. */
+.media img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.72) contrast(1.04) brightness(.86)}
+
+/* For drawn graphics (SVG charts) rather than photographs: show the whole
+   thing instead of cropping it, and no grade — they are already in palette. */
+.media--graphic{background:#08080B}
+.media--graphic img{object-fit:contain;filter:none}
+
+/* --- whole-image slot ---------------------------------------------------
+
+   Use .media--fit when the picture must be seen in full: anything with text
+   in it, a diagram, or a wide banner. The box takes the image's shape
+   instead of forcing the image into the box's, so nothing is cropped.
+
+     <div class="media media--fit"><img src="..." width="W" height="H"></div>
+
+   min-height is dropped because a fixed height is what causes the crop.
+   No grade either — these read as graphics, and dimming them makes the
+   text inside harder to read. */
+
+.media--fit{
+  min-height:0; background:#08080B;
+  border:1px solid var(--hair);
+  display:block;                       /* not the centring grid */
+}
+.media--fit img{
+  width:100%; height:auto;             /* natural aspect, no cropping */
+  object-fit:contain; filter:none;
+}
 .media__note{font-family:var(--mono);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,243,240,.62);text-align:center;line-height:2;padding:1rem}
 .media--tall{min-height:23rem}
 
